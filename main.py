@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import threading
+import os
 
 def download_comic(contador):
     response = requests.get(f"https://xkcd.com/{contador}/")
@@ -22,6 +23,8 @@ def download_comic(contador):
         print(f"Finished")
         
 def create_threads():
+    if not (os.path.exists("comics")):
+        os.makedirs("comics")
     threads = []
     contador = 3014
     while True:
